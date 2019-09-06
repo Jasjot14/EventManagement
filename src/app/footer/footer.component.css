@@ -1,0 +1,43 @@
+.contact{
+    width: 100%;
+   
+    
+ }
+.container {
+background-color: #4073ff;
+position: fixed;
+left: 0;
+bottom: 0;
+width: 100%;
+color: white;
+text-align: center;
+ }
+ .button{
+    width: 150px;
+    height: 50px;
+    border-radius: 5px;
+    color: #fff;
+    font-size: 20px;
+    background-color: #113163;
+    border-style: 1px solid;
+    border-color: #104291;
+    margin-left: 10px;
+ }
+ .textbox{
+     height: 45px;
+     width: 200px;
+     border-radius: 5px;
+ }
+ h6{
+     color: black;
+     font-size: 20px;
+     margin-bottom: 10px;
+ }
+ .bot{
+    float: right;
+    position: relative;
+  
+    }
+    .img{
+        padding: 5px 5px 5px 5px;
+    }

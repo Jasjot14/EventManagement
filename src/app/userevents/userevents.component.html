@@ -1,0 +1,72 @@
+<div class="main">
+    <div class="">
+    <button type="button" class="btn btn-primary" routerLink='/userdashboard'> Back</button>
+    <h1>Upcoming Events</h1></div>
+        <div *ngFor="let item of events" class="b2">
+       
+          <h2>{{item.eventID}} | {{item.title}}</h2>
+          
+          <p><mark>Category : {{item.categoryID}} | Date : {{item.date}}</mark></p>
+          <div class="" style="display: flex;">
+          <div class="description">     
+             <p>{{item.description}}</p>
+             </div>
+             <div class="buttons">
+                   
+                    <button type="button" class="btn btn-primary" (click)="showDialog = !showDialog">Interested</button>
+                    <br><br>
+                    <textarea class="" rows="3" id="comment" placeholder="Enter your comments..."></textarea><br>
+                    <button type="button" class="btn btn-info">Add</button>
+                    
+               </div>
+
+          </div>
+          
+      </div>
+      <app-dialog [(visible)]="showDialog">
+          <h2>Enter Your Details</h2>
+            <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
+                    <div class="form-row">
+                            <div class="form-group col">
+                            <label>Title</label>
+                            <select formControlName="Title" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.Title.errors }">
+                                <option value=""></option>
+                                <option value="Mr">Mr</option>
+                                <option value="Mrs">Mrs</option>
+                                <option value="Miss">Miss</option>
+                         
+                            </select>
+                            <div *ngIf="submitted && f.Title.errors" class="invalid-feedback">
+                                <div *ngIf="f.Title.errors.required" class="alert alert-danger">Title is required</div>
+                            </div>
+                        </div>
+                        <div class="form-group col-5">
+                            <label>Full Name</label>
+                            <input type="text" formControlName="Name" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.Name.errors }" />
+                            <div *ngIf="submitted && f.Name.errors" class="invalid-feedback">
+                                <div *ngIf="f.Name.errors.required" class="alert alert-danger"> Name is required</div>
+                            </div>
+                        </div>
+                        <div class="form-group col-5">
+                            <label>Email</label>
+                            <input type="email" formControlName="Email" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.Email.errors }" />
+                            <div *ngIf="submitted && f.Email.errors" class="invalid-feedback">
+                                <div *ngIf="f.Email.errors.required" class="alert alert-danger">Email is required</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Contact</label>
+                        <input type="number" formControlName="Contact" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.Contact.errors }" />
+                        <div *ngIf="submitted && f.Contact.errors" class="invalid-feedback">
+                            <div *ngIf="f.Contact.errors.required" class="alert alert-danger">Contact number is required</div>
+                            
+                        </div>
+                    </div>
+               
+                    <div class="text-center">
+                        <button class="btn btn-primary mr-1">Join Us</button>
+                        
+                    </div> 
+                </form>
+        </app-dialog>

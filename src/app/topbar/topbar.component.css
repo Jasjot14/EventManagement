@@ -1,0 +1,16 @@
+.navbar.navbar-inverse{
+background-color: #24a4ff;
+
+}
+.navbar-inverse .navbar-brand {
+    color: #fff;
+}
+.navbar-inverse .navbar-nav>li>a{
+    color: #fff;
+}
+.logo{
+    height: 40px;
+    width: 40px;
+    float: left;
+    margin-top: 5px;
+}

@@ -1,0 +1,21 @@
+
+    
+    <app-sidenav></app-sidenav>
+     
+  <div class="main">
+    <div *ngFor="let item of events" class="b2">
+   
+      <h2>{{item.eventID}} | {{item.title}}</h2>
+      
+      <p><mark>Category : {{item.categoryID}} | Date : {{item.date}}</mark></p>
+      <div class="" style="display: flex;">
+      <div class="description">     
+         <p>{{item.description}}</p>
+         </div>
+         <div class="buttons">
+         <button type="button" class="btn btn-danger" (click)="ondelete(item.eventID)">Delete</button>
+       <br><br>
+         <button type="button" class="btn btn-info" [routerLink]="['/update']" [queryParams]="{id : item.eventID}">Update</button></div>
+    </div>
+      </div>
+  </div>

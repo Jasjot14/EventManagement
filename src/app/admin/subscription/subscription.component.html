@@ -1,0 +1,106 @@
+
+<div class="" style="display: flex;">
+
+<app-sidenav></app-sidenav>
+<div class="form">
+    <h2>Enter Your Details</h2>
+            <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
+                    <div class="form-row">
+                            <div class="form-group col-5">
+                                    <label>Invoice</label>
+                                    <input type="number" formControlName="invoice" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.invoice.errors }" />
+                                    <div *ngIf="submitted && f.invoice.errors" class="invalid-feedback">
+                                        <div *ngIf="f.invoice.errors.required" class="alert alert-danger"> Invoice is required</div>
+                                    </div>
+                                </div>
+                             <div class="form-group col">
+                            <label>Sale Type</label>
+                            <select formControlName="sale" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.sale.errors }">
+                                <option value=""></option>
+                                <option value="Client">Client</option>
+                                <option value="Client & Voucher">Client & Voucher</option>
+                                <option value="Voucher">Voucher</option>
+                         
+                            </select>
+                            <div *ngIf="submitted && f.sale.errors" class="invalid-feedback">
+                                <div *ngIf="f.sale.errors.required" class="alert alert-danger">Sale Type is required</div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group col-5" *ngIf="f.sale.value=='Client' || f.sale.value=='Client & Voucher'">
+                            <label>Clients Name</label>
+                            <ng-multiselect-dropdown 
+                            name="clients"
+                            [placeholder]="'select clients'"
+                            [data]="clients" 
+                            formControlName="client"
+                            [settings]="dropdownSettings" 
+                            (onSelect)="onItemSelect($event)"
+                            [ngModel]="selectedItems"
+                                >
+                        </ng-multiselect-dropdown>
+                            <div *ngIf="submitted && f.clients.errors" class="invalid-feedback">
+                                <div *ngIf="f.clients.errors.required" class="alert alert-danger"> Clients Name is required</div>
+                            </div>
+                        </div>
+                    
+                        <div class="form-group col-5" *ngIf="f.sale.value=='Voucher'|| f.sale.value== 'Client & Voucher'">
+                            <label>Voucher ID</label>
+                            <mat-form-field class="example-chip-list">
+                                <mat-chip-list #chipList aria-label="Fruit selection">
+                                  <mat-chip *ngFor="let fruit of fruits" [selectable]="selectable"
+                                           [removable]="removable" (removed)="remove(fruit)">
+                                    {{fruit.name}}
+                                     </mat-chip>
+                                  <input  class="form-control" type="number"
+                                         [matChipInputFor]="chipList"
+                                         [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                                         [matChipInputAddOnBlur]="addOnBlur"
+                                         (matChipInputTokenEnd)="add($event)"
+                                         >
+                                </mat-chip-list>
+                              </mat-form-field>
+                        </div>
+                       
+                   </div>
+                     
+                    
+                    <div  *ngFor="let item of selectedItems" style="display: flex;">
+                        <div class="alert alert-info">
+                            
+                            {{item.client_name}}
+                    </div>
+                <div class="form-group">
+                        <select class="form-control" >
+                            <option>select Package</option>
+                                <option>3 months</option>
+                                <option>6 months</option>
+                                <option>1 year</option>
+                                <option>2 years</option>
+                              </select>
+                </div>
+                </div>
+
+                    <div class="" *ngFor="let item of fruits" style="display:flex;">
+                            <div class="alert alert-info">
+                            
+                                    {{item.name}}
+                            </div>
+                        <div class="form-group">
+                                <select class="form-control" >
+                                    <option>select Package</option>
+                                        <option>3 months</option>
+                                        <option>6 months</option>
+                                        <option>1 year</option>
+                                        <option>2 years</option>
+                                      </select>
+                        </div>
+                    </div>
+                    <div class="text-center">
+                        <button class="btn btn-primary mr-1">Join Us</button>
+                        
+                    </div> 
+                </form>
+</div>
+
+</div>
